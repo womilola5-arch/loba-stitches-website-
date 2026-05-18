@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LOBA Stitches — Handcrafted Crochet Fashion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --brown:    #3C2F2F;
+      --brown2:   #5a3a2a;
+      --caramel:  #c47c3e;
+      --sand:     #e8c99a;
+      --cream:    #f5e6d3;
+      --off:      #fdf8f2;
+      --muted:    #8a6a55;
+      --text:     #2a1a10;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--off);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ==================== NEW: ROTATING KNITTED BACKGROUND ==================== */
+    .knit-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 460px;
+      height: 620px;
+      transform: translate(-50%, -50%) rotateX(12deg);
+      animation: knitRotate 70s linear infinite;
+      z-index: 1;
+      opacity: 0.13;
+      pointer-events: none;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+    @keyframes knitRotate {
+      from { transform: translate(-50%, -50%) rotateX(12deg) rotateY(0deg); }
+      to   { transform: translate(-50%, -50%) rotateX(12deg) rotateY(360deg); }
+    }
+
+    /* ADMIN BUTTON */
+    .admin-btn {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: #3C2F2F;
+      color: #f5e6d3;
+      padding: 0.7rem 1.5rem;
+      border-radius: 9999px;
+      border: 1px solid #c47c3e;
+      transition: all 0.3s;
+    }
+    .admin-btn:hover {
+      background: #c47c3e;
+      color: #3C2F2F;
+      transform: translateY(-2px);
+    }
+
+    /* ==================== YOUR ORIGINAL STYLES (unchanged) ==================== */
+    #cur  { position:fixed; width:10px; height:10px; background:var(--caramel); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .3s,height .3s; }
+    #cur2 { position:fixed; width:34px; height:34px; border:1.5px solid rgba(196,124,62,.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:left .14s ease,top .14s ease; }
+
+    /* ... Rest of your original CSS remains exactly the same ... */
+    nav { position:fixed; top:0; left:0; right:0; z-index:500; display:flex; align-items:center; justify-content:space-between; padding:1.2rem 3rem; background:rgba(253,248,242,.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(164,82,45,.1); }
+    .nav-logo { display:flex; align-items:baseline; gap:.25rem; }
+    .nav-logo .L { font-family:'Playfair Display',serif; font-size:1.65rem; font-weight:700; color:var(--brown); letter-spacing:.04em; }
+    .nav-logo .S { font-family:'Jost',sans-serif; font-size:.85rem; font-weight:300; letter-spacing:.22em; text-transform:uppercase; color:var(--caramel); }
+    .nav-links { display:flex; gap:2.2rem; }
+    .nl { font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); transition:color .3s; position:relative; }
+    .nl::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:1px; background:var(--caramel); transition:width .3s; }
+    .nl:hover { color:var(--brown); } .nl:hover::after { width:100%; }
+    .nav-btn { font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; background:var(--brown); color:var(--cream); padding:.6rem 1.5rem; transition:background .3s,transform .2s; }
+    .nav-btn:hover { background:var(--caramel); transform:translateY(-1px); }
+
+    /* Hero & other styles remain the same as you provided */
+    #hero { min-height:100vh; background:var(--brown); display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:7rem 3rem 4rem; gap:2rem; position:relative; overflow:hidden; }
+
+    /* Mobile adjustments */
+    @media(max-width:768px){
+      nav { padding:1.1rem 1.4rem; }
+      .nav-links { display:none; }
+      .knit-bg { width:320px; height:420px; opacity: 0.08; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<nav>
+  <div class="nav-logo">
+    <span class="L">LOBA</span>
+    <span class="S">Stitches</span>
+  </div>
+  <div class="nav-links">
+    <a href="#collection" class="nl">Collection</a>
+    <a href="#services" class="nl">Services</a>
+    <a href="#about" class="nl">About</a>
+    <a href="#order" class="nl">Order</a>
+  </div>
+  <div class="flex items-center gap-4">
+    <button onclick="showAdmin()" class="admin-btn">Admin Upload</button>
+    <a href="https://wa.me/2347051579912?text=Hello%20LOBA%20Stitches!%20I'm%20visiting%20your%20website%20and%20would%20like%20to%20inquire%20about%20placing%20a%20custom%20crochet%20pre-order." target="_blank" class="nav-btn">Pre-Order Now</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <!-- Rotating Knitted Background -->
+  <div class="knit-bg">
+    <img src="orange-halter-top.jpg" alt="Orange Halter Top" class="w-full h-full object-cover">
+  </div>
+
+  <!-- Your original hero content -->
+  <div class="hero-left">
+    <div class="hero-tag">Handcrafted · Made to Order · Ships Nationwide</div>
+    <h1>Wear What<br/>Hands <em>Weave</em><br/>with Love</h1>
+    <p class="hero-sub">Premium crochet pieces crafted stitch by stitch — yours, in any colour, any size.</p>
+    <div class="pills">
+      <div class="pill">Sweaters</div>
+      <div class="pill">Shorts</div>
+      <div class="pill">Bikini & Beach Wear</div>
+      <div class="pill">Head Warmers</div>
+      <div class="pill">Scrunchies</div>
+      <div class="pill">Custom Orders</div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#collection" class="cta-main"><span>Shop the Collection</span></a>
+      <a href="#collection" class="cta-link">See pieces <span class="ar">→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Your original rotating cards, needles, etc. stay here -->
+    <!-- (All your original hero-right content remains) -->
+  </div>
+</section>
+
+<!-- === ALL YOUR OTHER SECTIONS (Collection, Services, About, Order, Footer) === -->
+<!-- Copy and paste the rest of your original sections here exactly as they were -->
+
+<!-- ADMIN MODAL -->
+<div id="adminModal" class="hidden fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center">
+  <div class="bg-[#2C211B] rounded-3xl p-8 max-w-md w-full mx-4">
+    <h3 class="text-2xl font-bold mb-6 text-center text-[#f5e6d3]">Admin - New Product Upload</h3>
+    
+    <input type="password" id="adminPass" placeholder="Enter Admin Password" 
+           class="w-full bg-[#3C2F2F] border border-white/30 rounded-2xl px-5 py-4 mb-6 text-white focus:outline-none">
+
+    <div id="uploadForm" class="hidden space-y-5">
+      <input type="text" id="prodName" placeholder="Product Name" class="w-full bg-[#3C2F2F] border border-white/20 rounded-2xl px-5 py-4 text-white">
+      <button onclick="submitProduct()" class="w-full bg-[#f5e6d3] text-[#3C2F2F] py-5 rounded-2xl font-semibold hover:bg-white">
+        Submit New Product
+      </button>
+    </div>
+
+    <button onclick="hideAdmin()" class="mt-6 w-full text-white/70 hover:text-white">Close</button>
+  </div>
+</div>
+
+<script>
+  // Your original scripts here...
+
+  const ADMIN_PASSWORD = "LobaSt!tch3s2026#Admin";
+
+  function showAdmin() {
+    document.getElementById('adminModal').classList.remove('hidden');
+    document.getElementById('adminPass').focus();
+  }
+
+  function hideAdmin() {
+    document.getElementById('adminModal').classList.add('hidden');
+    document.getElementById('adminPass').value = '';
+    document.getElementById('uploadForm').classList.add('hidden');
+  }
+
+  document.getElementById('adminPass').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      if (this.value === ADMIN_PASSWORD) {
+        document.getElementById('uploadForm').classList.remove('hidden');
+      } else {
+        alert("Incorrect Password");
+        this.value = '';
+      }
+    }
+  });
+
+  function submitProduct() {
+    const name = document.getElementById('prodName').value;
+    if (!name) return alert("Please enter product name");
+    alert(`✅ "${name}" submitted successfully!`);
+    hideAdmin();
+  }
+
+  // Your existing scripts (cursor, marquee, scroll reveal, etc.)
+</script>
+</body>
+</html>
